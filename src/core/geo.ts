@@ -5,7 +5,7 @@
 
 import type { Lang } from './types';
 
-const TIMEOUT_MS = 1200;
+const TIMEOUT_MS = 3000; // holgado: durante la carga del sitio la red compite con muchos scripts
 
 // Países hispanohablantes (ISO2) → 'es'. El resto → 'en'. Brasil (BR) cae a 'en' hasta que
 // exista 'pt' en la LP (cambio de una línea: añadir 'BR' aquí lo mandaría a 'es').
@@ -19,7 +19,8 @@ function langForCountry(iso2: string): Lang {
 }
 
 async function fromCloudflare(signal: AbortSignal): Promise<string | undefined> {
-  const res = await fetch('/cdn-cgi/trace', { signal });
+  // no-store: evita que una capa de caché (WP/CDN) sirva HTML cacheado en vez del trace.
+  const res = await fetch('/cdn-cgi/trace', { signal, cache: 'no-store' });
   if (!res.ok) return undefined;
   const txt = await res.text();
   return txt.match(/^loc=([A-Z]{2})$/m)?.[1];
@@ -38,10 +39,14 @@ async function fromJson(url: string, key: string, signal: AbortSignal): Promise<
 
 // Idioma por país (IP), o null ante cualquier fallo/timeout. Prueba proveedores en orden.
 export async function detectLang(): Promise<Lang | null> {
+  // Cloudflare trace primero (fiable en prod, mismo origen, sin rate-limit). Las IP-API son
+  // fallback para contextos sin CF (localhost); api.country.is y geojs son más estables que
+  // ipwho.is (que rate-limitea con 429), por eso ipwho queda de último recurso.
   const providers: ((s: AbortSignal) => Promise<string | undefined>)[] = [
     fromCloudflare,
-    (s) => fromJson('https://ipwho.is/', 'country_code', s),
+    (s) => fromJson('https://api.country.is/', 'country', s),
     (s) => fromJson('https://get.geojs.io/v1/ip/country.json', 'country', s),
+    (s) => fromJson('https://ipwho.is/', 'country_code', s),
   ];
   for (const provider of providers) {
     const controller = new AbortController();

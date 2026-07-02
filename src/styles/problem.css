@@ -1,0 +1,62 @@
+/* atfx-cfds · "Lo que ya sabes hacer" — maquetación Relume Layout 303: header a la
+   izquierda + rejilla de 4 columnas (icono + título + descripción). Tokens --aa-*. */
+
+.aa-landing .aa-skills__wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aa-gap-xl);
+}
+
+/* Desktop: sin padding lateral, la rejilla usa el ancho completo del contenedor.
+   Mobile: padding lateral estándar como el resto de secciones. */
+.aa-landing .aa-skills .aa-container { padding-inline: 0; }
+@media screen and (max-width: 767px) {
+  .aa-landing .aa-skills .aa-container { padding-inline: var(--aa-container-pad); }
+}
+
+/* Header 303 alineado a la izquierda, ancho contenido */
+.aa-landing .aa-skills .aa-section-header--left { max-width: 32em; }
+
+/* Rejilla: 1 col → 2 col (tablet) → 4 col (desktop), como Layout 303 */
+.aa-landing .aa-skills__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--aa-gap-m);
+  list-style: none;
+  margin: 0;
+  padding: 0; /* reset del padding-inline-start por defecto del <ul> */
+}
+@media screen and (min-width: 768px) {
+  .aa-landing .aa-skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--aa-gap-m);
+  }
+}
+@media screen and (min-width: 992px) {
+  .aa-landing .aa-skills__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Cada skill como card (mismo lenguaje que .aa-container--card: superficie elevada) */
+.aa-landing .aa-skills__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--aa-bg-subtle);
+  border: 1px solid var(--aa-border);
+  border-radius: clamp(14px, 2vw, 20px);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* Icono: cuadro 3rem, trazo de acento (size-12 de Relume) */
+.aa-landing .aa-skills__icon {
+  display: inline-flex;
+  margin-bottom: var(--aa-gap-s);
+  color: var(--aa-accent);
+}
+.aa-landing .aa-skills__icon svg {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Tipografía la aporta la capa semántica (.aa-h-m / .aa-p-l); aquí solo el ritmo */
+.aa-landing .aa-skills__title { margin-bottom: var(--aa-gap-xs); }

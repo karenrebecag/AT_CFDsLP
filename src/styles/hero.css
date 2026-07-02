@@ -1,0 +1,170 @@
+/* atfx-cfds · hero (banner). Maquetación Relume "Header 113": fondo full-bleed
+   (video + overlay) a viewport completo, contenido anclado abajo en 2 columnas y
+   banda de métricas full-width. Desktop-first (breakpoints 991/767/479), tokens --aa-*. */
+
+.aa-landing .aa-hero {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  isolation: isolate;
+  /* Altura automática al contenido; respiro arriba (incluye navbar fijo) + abajo, tokenizado */
+  padding-block: calc(var(--aa-nav-height) + var(--aa-padding-xl)) var(--aa-padding-xl);
+}
+
+/* Fondo: video loop muteado + overlay (como el HeroStrip de Spark) */
+.aa-landing .aa-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #000; /* negro neutro: empata con la escena Spline */
+}
+/* Wrapper del media = target del parallax (GSAP le aplica yPercent) */
+.aa-landing .aa-hero__media-wrap {
+  position: absolute;
+  inset: 0;
+}
+.aa-landing .aa-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.4); /* zoom + margen para el recorrido del parallax */
+  filter: brightness(0.5);
+  pointer-events: none;
+}
+.aa-landing .aa-hero__spline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #000;
+  transform: scale(1.4);
+  transform-origin: center;
+  filter: brightness(0.68);
+  pointer-events: none;
+}
+.aa-landing .aa-hero__overlay {
+  position: absolute;
+  inset: 0;
+  /* Degradado: más oscuro abajo, donde vive el contenido (legibilidad Relume 113) */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.32) 55%, rgba(0, 0, 0, 0.24) 100%);
+}
+
+/* Contenedor: ancla el contenido al fondo del hero */
+.aa-landing .aa-hero__grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--aa-container-max);
+  margin-inline: auto;
+  padding-inline: var(--aa-container-pad);
+}
+
+.aa-landing .aa-hero__content {
+  width: 100%;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5); /* legibilidad sobre el video */
+}
+
+/* Dos columnas: principal (título + CTA) | soporte (subheading + producto) */
+.aa-landing .aa-hero__cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--aa-gap-m);
+  align-items: end;
+}
+@media screen and (min-width: 992px) {
+  .aa-landing .aa-hero__cols {
+    grid-template-columns: 1.15fr 1fr;
+    gap: var(--aa-gap-xxl);
+  }
+}
+
+.aa-landing .aa-hero__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.aa-landing .aa-hero__col--support { gap: var(--aa-gap-xs); }
+
+/* Tag: abre la jerarquía sobre el título */
+.aa-landing .aa-hero__tag { margin-bottom: var(--aa-gap-s); }
+
+.aa-landing .aa-hero__title {
+  max-width: 15em;
+  margin-bottom: var(--aa-gap-m);
+}
+
+.aa-landing .aa-hero__sub {
+  max-width: 32em;
+  font-size: var(--aa-text-m);
+  line-height: var(--aa-leading-snug);
+  color: var(--aa-fg-muted);
+}
+/* Lead de la columna: misma escala que el subhead base (text-m), diferenciado por
+   color/peso, no por un tamaño fuera de escala (mantiene coherencia con el sistema) */
+.aa-landing .aa-hero__sub--lead {
+  line-height: var(--aa-leading-normal);
+  color: color-mix(in srgb, var(--aa-fg) 88%, transparent);
+}
+/* Línea de producto (qué se opera): un punto más tenue, jerarquía inferior */
+.aa-landing .aa-hero__sub--product {
+  max-width: 34em;
+  font-size: var(--aa-text-s);
+}
+/* Énfasis: negrita + color pleno para contrastar contra el texto muted del soporte */
+.aa-landing .aa-hero__em {
+  font-weight: var(--aa-weight-bold);
+  color: var(--aa-fg);
+}
+
+.aa-landing .aa-hero__cta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--aa-gap-s);
+}
+
+/* Banda de métricas full-width: separador superior + fila de 4 stats (valor + etiqueta) */
+.aa-landing .aa-hero__cred {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--aa-gap-l);
+  margin-top: var(--aa-gap-xl);
+  padding-top: var(--aa-gap-l);
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  list-style: none;
+}
+.aa-landing .aa-hero__cred-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+}
+.aa-landing .aa-hero__cred-value {
+  font-family: var(--aa-font-display); /* stat con carácter de marca, tier de heading */
+  font-size: var(--aa-text-l);
+  font-weight: var(--aa-weight-bold);
+  line-height: 1.05;
+  color: var(--aa-fg);
+  font-variant-numeric: tabular-nums; /* evita saltos de ancho durante el rodado */
+}
+.aa-landing .aa-hero__cred-label {
+  font-size: var(--aa-text-xs, 0.75rem);
+  line-height: var(--aa-leading-snug);
+  color: var(--aa-fg-muted);
+}
+@media screen and (max-width: 767px) {
+  .aa-landing .aa-hero__cred {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--aa-gap-m);
+    row-gap: var(--aa-gap-l);
+  }
+  .aa-landing .aa-hero__cred-value { font-size: var(--aa-text-ml); }
+}

@@ -1,0 +1,171 @@
+/* atfx-peru · navbar (logos ATFX · Blue Makers + CTA) + atoms (roll, pill, nav-cta). */
+
+/* ─── Roll (label vertical: dos copias apiladas, suben en hover) ───────────────── */
+.aa-landing .aa-roll {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 1.2em;
+  line-height: 1.2;
+  overflow: hidden;
+}
+.aa-landing .aa-roll__item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  transition: transform var(--aa-duration-m) var(--aa-ease-out);
+}
+.aa-landing .aa-roll__item:nth-child(2) {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+/* ─── Pill (eyebrow contenedor) ────────────────────────────────────────────────── */
+/* Tag/eyebrow — badge sólido de alto contraste (patrón .aa-eyebrow de ATOM). Flipea
+   con el tema: en light = navy sobre claro; en dark = blanco sobre navy. Interval mono. */
+.aa-landing .aa-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.5em 1em;
+  font-family: var(--aa-font-mono);
+  font-size: var(--aa-text-xs);
+  font-weight: var(--aa-weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aa-bg);
+  background: var(--aa-fg);
+  border-radius: var(--aa-radius-pill);
+}
+
+/* ─── NavCta (botón pill con roll + flecha) — usado en otros átomos ─────────────── */
+.aa-landing .aa-nav-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  height: 2.8em;
+  padding: 0 1.4em;
+  color: var(--aa-accent-fg);
+  border: 1px solid transparent;
+  border-radius: var(--aa-radius-pill);
+  background: var(--aa-accent);
+  box-shadow: 0 8px 24px -6px rgba(23, 43, 79, 0.35);
+  font-weight: var(--aa-weight-bold);
+  font-size: var(--aa-text-xs);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform var(--aa-duration-s) var(--aa-ease-out),
+    box-shadow var(--aa-duration-s) var(--aa-ease-out);
+}
+.aa-landing .aa-nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px -6px rgba(23, 43, 79, 0.45);
+}
+.aa-landing .aa-nav-cta:hover .aa-roll__item { transform: translateY(-100%); }
+
+.aa-landing .aa-nav-cta--standalone {
+  height: 3.375em;
+  padding-left: 1.75em;
+  padding-right: 0.5em;
+  width: auto;
+  justify-content: center;
+}
+.aa-landing .aa-nav-cta__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5em;
+  height: 2.5em;
+  flex: none;
+  border-radius: var(--aa-radius-pill);
+  border: 1px solid rgba(47, 176, 255, 0.2);
+  background: rgba(47, 176, 255, 0.12);
+}
+.aa-landing .aa-nav-cta__icon svg { width: 1em; height: 1em; color: var(--aa-color-blue); }
+
+/* ─── Navbar — logos (ATFX · sep · Blue Makers) + CTA, en space-between ─────────── */
+/* Fija bajo el topbar, fondo transparente. La barra no captura clicks (solo logos/CTA);
+   data-nav-theme lo setea initNavbar según la sección detrás → swap de versión de logo. */
+.aa-landing .aa-nav {
+  position: fixed;
+  top: var(--aa-topbar-height);
+  left: 0;
+  right: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--aa-gap-m);
+  padding: var(--aa-gap-s) var(--aa-container-pad);
+  pointer-events: none;
+  transition:
+    transform var(--aa-duration-m) var(--aa-ease-out),
+    opacity var(--aa-duration-s) var(--aa-ease-out);
+}
+/* Oculto: sube fuera de vista (scroll down / !top). Vuelve en top y scroll up. */
+.aa-landing .aa-nav--hidden {
+  transform: translateY(calc(-100% - var(--aa-topbar-height)));
+  opacity: 0;
+}
+.aa-landing .aa-nav__logos {
+  display: flex;
+  align-items: center;
+  gap: var(--aa-gap-m);
+  pointer-events: none; /* decorativos: dejan pasar el hit-test al detectar el tema */
+}
+.aa-landing .aa-nav__logo {
+  display: inline-flex;
+  align-items: center;
+}
+.aa-landing .aa-nav__logo-img {
+  display: block;
+  width: auto;
+}
+.aa-landing .aa-nav__logo--atfx .aa-nav__logo-img { height: 1.2em; }
+.aa-landing .aa-nav__logo--bm .aa-nav__logo-img { height: 2em; }
+
+/* Swap por tema: dark logos sobre secciones light; white logos sobre dark */
+.aa-landing .aa-nav__logo-img--dark { display: block; }
+.aa-landing .aa-nav__logo-img--white { display: none; }
+.aa-landing .aa-nav[data-nav-theme="dark"] .aa-nav__logo-img--dark { display: none; }
+.aa-landing .aa-nav[data-nav-theme="dark"] .aa-nav__logo-img--white { display: block; }
+
+/* Separador vertical (color por tema) */
+.aa-landing .aa-nav__sep {
+  width: 1px;
+  height: 1.9em;
+  flex: none;
+  background: rgba(23, 43, 79, 0.25);
+}
+.aa-landing .aa-nav[data-nav-theme="dark"] .aa-nav__sep { background: rgba(255, 255, 255, 0.3); }
+
+.aa-landing .aa-nav__cta {
+  pointer-events: auto;
+  flex: none;
+}
+
+/* Acciones (derecha): toggle de idioma + CTA */
+.aa-landing .aa-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--aa-gap-s);
+  flex: none;
+  pointer-events: auto;
+}
+/* El toggle toma el color del tema del navbar: navy sobre light, blanco sobre dark */
+.aa-landing .aa-nav .aa-lang { color: var(--aa-blue-950); }
+.aa-landing .aa-nav[data-nav-theme="dark"] .aa-lang { color: #ffffff; }
+
+@media screen and (max-width: 600px) {
+  .aa-landing .aa-nav { padding-block: var(--aa-gap-xs); }
+  .aa-landing .aa-nav__logos { gap: var(--aa-gap-s); }
+  .aa-landing .aa-nav__logo--atfx .aa-nav__logo-img { height: 1em; }
+  .aa-landing .aa-nav__logo--bm .aa-nav__logo-img { height: 1.7em; }
+}

@@ -1,0 +1,181 @@
+/* atom-academy · design tokens (OSMO-inspired). Fuente única de verdad del DS. */
+
+/* ─── Fluid scaling (base desktop 1440) ──────────────────────────────────────── */
+:root {
+  --aa-size-unit: 16;
+  --aa-size-container-ideal: 1440;
+  --aa-size-container-min: 992px;
+  /* Tope del escalado fluido: la tipografía deja de crecer pasado el ancho "ideal"
+     (1440). Sin esto, en monitores grandes (≥1920) la base subía a ~21px y todo se veía
+     +33% más grande/pesado. */
+  --aa-size-container-max: 1440px;
+  --aa-size-container: clamp(var(--aa-size-container-min), 100vw, var(--aa-size-container-max));
+  --aa-size-font: calc(var(--aa-size-container) / (var(--aa-size-container-ideal) / var(--aa-size-unit)));
+
+  /* ─── Color — neutral scale ───────────────────────────────────────────────── */
+  --aa-neutral-50:  #fafafa;
+  --aa-neutral-100: #f5f5f5;
+  --aa-neutral-150: #efefef;
+  --aa-neutral-200: #e5e5e5;
+  --aa-neutral-300: #d4d4d4;
+  --aa-neutral-400: #a3a3a3;
+  --aa-neutral-500: #737373;
+  --aa-neutral-600: #525252;
+  --aa-neutral-700: #404040;
+  --aa-neutral-800: #262626;
+  --aa-neutral-850: #1a1a1a;
+  --aa-neutral-900: #171717;
+  --aa-neutral-950: #0a0a0a;
+
+  /* ─── Blue Zodiac — paleta ÚNICA de marca (primary = 950 #172b4f) ──────────── */
+  --aa-blue-50:  #eff8ff;
+  --aa-blue-100: #dceefd;
+  --aa-blue-200: #c0e3fd;
+  --aa-blue-300: #95d2fb;
+  --aa-blue-400: #63b8f7;
+  --aa-blue-500: #3e9af3;
+  --aa-blue-600: #297de7;
+  --aa-blue-700: #2067d5;
+  --aa-blue-800: #2153ac;
+  --aa-blue-900: #204888;
+  --aa-blue-950: #172b4f; /* PRIMARY de marca */
+  /* Sombras profundas de la misma familia — para FONDOS de dark sections (el primary
+     #172b4f queda para cards/superficies elevadas, no para el strip). */
+  --aa-blue-975: #101e37;
+  --aa-blue-990: #0a1426;
+
+  /* Estado de error — color funcional, fuera de la paleta de marca */
+  --aa-color-coral: #f84131;
+
+  /* Aliases legacy → repuntan a la escala azul (no rompen referencias navy/cyan) */
+  --aa-navy-950: var(--aa-blue-950);
+  --aa-navy-900: var(--aa-blue-950);
+  --aa-navy-850: var(--aa-blue-900);
+  --aa-navy-800: var(--aa-blue-900);
+  --aa-color-cyan: var(--aa-blue-500);
+
+  /* ─── Semantic color tokens — light (default) ─────────────────────────────── */
+  --aa-bg:        var(--aa-blue-50);
+  --aa-bg-subtle: #ffffff;
+  --aa-fg:        var(--aa-blue-950);
+  --aa-fg-muted:  rgba(23, 43, 79, 0.65);
+  --aa-fg-subtle: rgba(23, 43, 79, 0.40);
+  --aa-border:    rgba(23, 43, 79, 0.12);
+  --aa-accent:    var(--aa-blue-600);
+  --aa-accent-fg: #ffffff;
+
+  /* ─── Spacing — section level (grande) ────────────────────────────────────── */
+  --aa-padding-xxl: 8rem;
+  --aa-padding-xl:  6rem;
+  --aa-padding-l:   4rem;
+  --aa-padding-m:   2.5rem;
+  --aa-padding-s:   1.5rem;
+  --aa-padding-xs:  1rem;
+  --aa-padding-xxs: 0.5rem;
+
+  /* ─── Spacing — component level (chico) ───────────────────────────────────── */
+  --aa-gap-xxl: 5rem;
+  --aa-gap-xl:  3.5rem;
+  --aa-gap-l:   2.5rem;
+  --aa-gap-m:   1.5rem;
+  --aa-gap-s:   1rem;
+  --aa-gap-xs:  0.75rem;
+  --aa-gap-xxs: 0.5rem;
+
+  /* ─── Border radius ───────────────────────────────────────────────────────── */
+  --aa-radius-s:    4px;
+  --aa-radius-m:    8px;
+  --aa-radius-l:    16px;
+  --aa-radius-xl:   24px;
+  --aa-radius-pill: 999px;
+
+  /* ─── Animation (OSMO easing system) ──────────────────────────────────────── */
+  --aa-ease:        cubic-bezier(0.625, 0.05, 0, 1);   /* "osmo" — signature ease */
+  --aa-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* spring / bounce */
+  --aa-ease-out:    cubic-bezier(0.22, 1, 0.36, 1);    /* expo-out feel */
+  --aa-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --aa-duration-xs: 0.15s;
+  --aa-duration-s:  0.3s;
+  --aa-duration-m:  0.6s;
+  --aa-duration-l:  1.2s;
+  --aa-duration-xl: 1.8s;
+
+  --aa-stagger: 0.05s;
+
+  /* ─── Typography ──────────────────────────────────────────────────────────── */
+  --aa-font:         'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --aa-font-display: 'Grift', 'Inter Tight', Georgia, serif;
+  --aa-font-mono:    'Interval', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Escala basada en --aa-size-font (base fluida px de .aa-landing) en vez de rem, para
+     ser INDEPENDIENTE del font-size del <html> del sitio WP (temas con root 62.5% achicaban
+     todo). El factor reemplaza a los rem; los vw se quedan (ya eran root-independientes). */
+  --aa-text-xxl: clamp(calc(var(--aa-size-font) * 3),    5vw,   calc(var(--aa-size-font) * 5.5));
+  --aa-text-xl:  clamp(calc(var(--aa-size-font) * 2.25), 4vw,   calc(var(--aa-size-font) * 4));
+  --aa-text-l:   clamp(calc(var(--aa-size-font) * 1.75), 3vw,   calc(var(--aa-size-font) * 2.75));
+  --aa-text-ml:  clamp(calc(var(--aa-size-font) * 1.5),  2.5vw, calc(var(--aa-size-font) * 2.25));
+  --aa-text-m:   clamp(calc(var(--aa-size-font) * 1.25), 2vw,   calc(var(--aa-size-font) * 1.75));
+  --aa-text-s:   clamp(calc(var(--aa-size-font) * 1),    1.5vw, calc(var(--aa-size-font) * 1.25));
+  --aa-text-xs:  calc(var(--aa-size-font) * 0.875);
+  --aa-text-xxs: calc(var(--aa-size-font) * 0.75);
+
+  --aa-leading-tight:  1.1;
+  --aa-leading-snug:   1.25;
+  --aa-leading-normal: 1.5;
+  --aa-leading-loose:  1.75;
+
+  --aa-weight-regular:   400;
+  --aa-weight-medium:    500;
+  --aa-weight-semibold:  600;
+  --aa-weight-bold:      700;
+  --aa-weight-extrabold: 800;
+
+  /* ─── Container ───────────────────────────────────────────────────────────── */
+  --aa-container-max: 1280px;
+  --aa-container-pad: var(--aa-padding-m);
+
+  /* ─── Layout heights ──────────────────────────────────────────────────────── */
+  --aa-nav-height: 4.625em; /* spacer superior del hero (alto de navbar OSMO) */
+  --aa-topbar-height: 2.25em; /* barra fija superior (botón de registro permanente) */
+
+  /* ─── Form (estilo input de OSMO) ─────────────────────────────────────────── */
+  --aa-input-height: 3em;
+  --aa-input-bg:     var(--aa-neutral-200);
+  --aa-input-radius: var(--aa-radius-s);
+}
+
+@media screen and (max-width: 991px) {
+  :root {
+    --aa-size-container-ideal: 834;
+    --aa-size-container-min: 768px;
+    --aa-size-container-max: 991px;
+    --aa-container-pad: var(--aa-padding-s);
+    --aa-padding-xxl: 5rem;
+    --aa-padding-xl:  4rem;
+    --aa-padding-l:   3rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    /* ideal más alto = base de fuente más chica (escala mobile mucho más pequeña) */
+    --aa-size-container-ideal: 720;
+    --aa-size-container-min: 480px;
+    --aa-size-container-max: 767px;
+    --aa-container-pad: var(--aa-padding-xs);
+    --aa-padding-xxl: 4rem;
+    --aa-padding-xl:  3rem;
+    --aa-padding-l:   2rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  :root {
+    --aa-size-container-ideal: 500;
+    --aa-size-container-min: 320px;
+    --aa-size-container-max: 479px;
+    --aa-padding-xxl: 3rem;
+    --aa-padding-xl:  2.5rem;
+  }
+}

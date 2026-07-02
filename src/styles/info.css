@@ -1,0 +1,102 @@
+/* atfx-cfds · conceptos CFDs (01–06) — maquetación Relume "Timeline 1": columna
+   izquierda sticky (intro) + columna derecha con línea de progreso vertical, dots que
+   se activan al scroll y entradas numeradas. Tokens --aa-*. */
+
+.aa-landing .aa-tl {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--aa-gap-xl);
+}
+@media screen and (min-width: 768px) {
+  .aa-landing .aa-tl {
+    grid-template-columns: minmax(0, 22em) minmax(0, 1fr);
+    gap: var(--aa-gap-xxl);
+    align-items: start;
+  }
+}
+
+/* Columna izquierda: sticky bajo el navbar en desktop */
+.aa-landing .aa-tl__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--aa-gap-s);
+}
+@media screen and (min-width: 768px) {
+  .aa-landing .aa-tl__aside {
+    position: sticky;
+    top: calc(var(--aa-nav-height) + var(--aa-gap-l));
+  }
+}
+.aa-landing .aa-tl__lead { color: var(--aa-fg-muted); }
+.aa-landing .aa-tl__cta { margin-top: var(--aa-gap-s); }
+
+/* Columna derecha: gutter izquierdo para la línea + los dots */
+.aa-landing .aa-tl__main {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+/* Línea de fondo (track tenue) + relleno de progreso (accent, scaleY por GSAP) */
+.aa-landing .aa-tl__line {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: var(--aa-border);
+  border-radius: 2px;
+}
+.aa-landing .aa-tl__fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: var(--aa-accent);
+  border-radius: 2px;
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+
+.aa-landing .aa-tl__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--aa-gap-xl);
+}
+
+.aa-landing .aa-tl__item { position: relative; }
+
+/* Dot sobre la línea: anillo del color de fondo para "montarlo" sobre el track */
+.aa-landing .aa-tl__dot {
+  position: absolute;
+  left: calc(-2.5rem + 0.5rem - 6px);
+  top: 0.35em;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--aa-border);
+  box-shadow: 0 0 0 6px var(--aa-bg);
+  transition: background var(--aa-duration-s, 0.3s) ease, transform var(--aa-duration-s, 0.3s) ease;
+}
+.aa-landing .aa-tl__dot.is-active {
+  background: var(--aa-accent);
+  transform: scale(1.05);
+}
+
+/* Número grande (marcador de paso) en fuente display + acento */
+.aa-landing .aa-tl__num {
+  display: block;
+  font-family: var(--aa-font-display);
+  font-size: var(--aa-text-ml);
+  font-weight: var(--aa-weight-extrabold);
+  line-height: 1;
+  color: var(--aa-accent);
+  font-variant-numeric: tabular-nums;
+}
+.aa-landing .aa-tl__title {
+  margin-top: var(--aa-gap-xxs);
+  margin-bottom: var(--aa-gap-xs);
+}
+.aa-landing .aa-tl__desc { max-width: 44em; }

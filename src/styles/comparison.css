@@ -1,0 +1,108 @@
+/* atfx-cfds · tabla comparativa "Compra directa vs. CFDs" — Relume "Comparison 1".
+   Sección dark completa; la tabla vive en un card elevado (bg-subtle). Columna CFDs
+   destacada. Los tokens los aporta la sección (data-aa-section-theme="dark"). */
+
+/* 2 columnas: contenido (header + tabla) a la izquierda, imagen a la derecha */
+.aa-landing .aa-compare__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--aa-gap-xl);
+}
+@media screen and (min-width: 900px) {
+  .aa-landing .aa-compare__inner {
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--aa-gap-xxl);
+    align-items: center;
+  }
+}
+
+.aa-landing .aa-compare__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aa-gap-l);
+}
+
+/* Header alineado a la izquierda */
+.aa-landing .aa-compare__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--aa-gap-s);
+  max-width: 42em;
+  text-align: left;
+}
+.aa-landing .aa-compare__lead { color: var(--aa-fg-muted); }
+
+/* Tabla como grid de filas; ancho completo de la columna */
+.aa-landing .aa-compare__table { width: 100%; }
+
+/* Slot de imagen: no se estira más que la altura del contenido en desktop */
+.aa-landing .aa-compare__media-slot { width: 100%; }
+
+.aa-landing .aa-compare__row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--aa-border);
+}
+
+/* Fila de cabecera: nombres de columna */
+.aa-landing .aa-compare__col-name {
+  padding: var(--aa-gap-s) var(--aa-gap-xs);
+  font-family: var(--aa-font-display);
+  font-size: var(--aa-text-ml);
+  font-weight: var(--aa-weight-bold);
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* Etiqueta de fila (característica) */
+.aa-landing .aa-compare__label {
+  padding: var(--aa-gap-s) var(--aa-gap-s) var(--aa-gap-s) 0;
+  font-size: var(--aa-text-s);
+  color: var(--aa-fg-muted);
+}
+
+/* Celda de valor: icono + texto, centrada */
+.aa-landing .aa-compare__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: var(--aa-gap-s) var(--aa-gap-xs);
+  font-size: var(--aa-text-s);
+  font-weight: var(--aa-weight-semibold);
+  text-align: center;
+}
+.aa-landing .aa-compare__icon { display: inline-flex; flex: none; }
+.aa-landing .aa-compare__icon svg { width: 1.15em; height: 1.15em; }
+.aa-landing .aa-compare__icon.is--yes { color: var(--aa-accent); }
+.aa-landing .aa-compare__icon.is--no { color: var(--aa-fg-subtle); }
+
+/* Columna destacada (CFDs): franja tenue de acento a lo alto de la columna */
+.aa-landing .aa-compare__cell.is--hl,
+.aa-landing .aa-compare__col-name.is--hl {
+  background: color-mix(in srgb, var(--aa-accent) 12%, transparent);
+}
+.aa-landing .aa-compare__row.is--head .aa-compare__col-name.is--hl {
+  border-top-left-radius: var(--aa-radius-m);
+  border-top-right-radius: var(--aa-radius-m);
+}
+.aa-landing .aa-compare__row:last-child .aa-compare__cell.is--hl {
+  border-bottom-left-radius: var(--aa-radius-m);
+  border-bottom-right-radius: var(--aa-radius-m);
+}
+
+/* Móvil: etiqueta a fila completa + dos celdas de valor debajo (patrón Comparison 1) */
+@media screen and (max-width: 640px) {
+  .aa-landing .aa-compare__row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .aa-landing .aa-compare__label {
+    grid-column: 1 / -1;
+    padding-bottom: 0;
+    font-weight: var(--aa-weight-semibold);
+    color: var(--aa-fg);
+  }
+  .aa-landing .aa-compare__row.is--head .aa-compare__label { display: none; }
+}

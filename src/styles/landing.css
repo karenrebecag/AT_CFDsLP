@@ -1,0 +1,87 @@
+/* atom-academy · landing page design system (OSMO-inspired, token-based). */
+/* Índice: esbuild inlinea estos @import en un solo dist/landing.css.          */
+/* Toda la especificidad vive bajo .aa-landing para no colisionar con Elementor. */
+
+/* Inter Tight (body) desde Google Fonts — debe ir primero (regla @import). */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap');
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./typography.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./navbar.css";
+@import "./topbar.css";
+@import "./scroll-progress.css";
+@import "./hero.css";
+@import "./countdown.css";
+@import "./problem.css";
+@import "./sections.css";
+@import "./info.css";
+@import "./comparison.css";
+@import "./rotating-text.css";
+@import "./speakers.css";
+@import "./pillar-slider.css";
+@import "./slider.css";
+@import "./cursor.css";
+@import "./benefits.css";
+@import "./accordion.css";
+@import "./footer.css";
+@import "./form.css";
+@import "./odometer.css";
+@import "./section-theme.css";
+
+/* Reset box-sizing: sin esto, width:100% + padding desbordan los contenedores y el
+   overflow-x: clip del root recorta el contenido por la derecha en todas las strips. */
+.aa-landing *,
+.aa-landing *::before,
+.aa-landing *::after {
+  box-sizing: border-box;
+}
+
+/* ─── Root wrapper ────────────────────────────────────────────────────────────── */
+.aa-landing {
+  font-family: var(--aa-font);
+  font-size: var(--aa-size-font);
+  color: var(--aa-fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Contiene cualquier overflow horizontal (p. ej. del form embebido) sin crear
+     scroll vertical ni afectar el nav fijo. clip = no establece scroll container. */
+  overflow-x: clip;
+  /* Stacking context propio: ancla el z-index:-1 de la capa de fondo fija (::before)
+     dentro del landing en vez de hundirla detrás del body/Elementor. */
+  isolation: isolate;
+}
+/* Capa de fondo FIJA: pinta el --aa-bg del tema raíz una sola vez (no repinta al
+   scrollear). Las secciones del mismo tema se vuelven transparentes y la dejan ver;
+   las del tema opuesto pintan su color opaco encima. Ahorra el overdraw de strips. */
+.aa-landing::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--aa-bg);
+  pointer-events: none;
+}
+
+/* Reset de márgenes UA en texto: el ritmo vertical lo controlan los tokens (gap),
+   no los márgenes em-based del navegador (que en flex no colapsan y se acumulan). */
+.aa-landing :where(h1, h2, h3, h4, h5, h6, p) {
+  margin: 0;
+}
+
+/* Dark theme global + section themes (strips) viven en section-theme.css. */
+
+/* ─── Utilities ───────────────────────────────────────────────────────────────── */
+.aa-landing .aa-text-center  { text-align: center; }
+.aa-landing .aa-text-balance { text-wrap: balance; }
+.aa-landing .aa-text-accent  { color: var(--aa-accent); }
+/* Highlight de heading — color sólido de acento (sin gradiente) */
+.aa-landing .aa-text-gradient {
+  color: var(--aa-accent);
+}
+.aa-landing .aa-flex-col     { display: flex; flex-direction: column; }
+.aa-landing .aa-flex-center  { display: flex; align-items: center; justify-content: center; }
+.aa-landing .aa-gap-s        { gap: var(--aa-gap-s); }
+.aa-landing .aa-gap-m        { gap: var(--aa-gap-m); }
+.aa-landing .aa-gap-l        { gap: var(--aa-gap-l); }

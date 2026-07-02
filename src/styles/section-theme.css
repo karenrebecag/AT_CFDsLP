@@ -1,0 +1,41 @@
+/* atom-academy · section themes (strips claro/oscuro). Adaptado del data-theme-section
+   de OSMO. OSMO usa selectores explícitos por componente; aquí remapeamos los tokens
+   --aa-* por sección: como todos los componentes leen de tokens, se adaptan solos. */
+
+/* Token set OSCURO — FONDO en navy profundo (blue-990); el primary #172b4f queda para
+   superficies elevadas (cards, inputs, items). */
+.aa-landing[data-aa-theme="dark"],
+.aa-landing [data-aa-section-theme="dark"] {
+  --aa-bg:        var(--aa-blue-990);
+  --aa-bg-subtle: var(--aa-blue-950);
+  --aa-fg:        #ffffff;
+  --aa-fg-muted:  rgba(255, 255, 255, 0.65);
+  --aa-fg-subtle: rgba(255, 255, 255, 0.35);
+  --aa-border:    rgba(255, 255, 255, 0.10);
+  --aa-input-bg:  var(--aa-blue-950);
+}
+
+/* Token set CLARO — re-asegura los valores base cuando una sección light vive dentro
+   de un tema global dark (estrato autónomo). Escala Blue Zodiac. */
+.aa-landing [data-aa-section-theme="light"] {
+  --aa-bg:        var(--aa-blue-50);
+  --aa-bg-subtle: #ffffff;
+  --aa-fg:        var(--aa-blue-950);
+  --aa-fg-muted:  rgba(23, 43, 79, 0.65);
+  --aa-fg-subtle: rgba(23, 43, 79, 0.40);
+  --aa-border:    rgba(23, 43, 79, 0.12);
+  --aa-input-bg:  #e6eef9;
+}
+
+/* Cada sección con tema pinta su propio strip a partir de los tokens remapeados */
+.aa-landing [data-aa-section-theme] {
+  background-color: var(--aa-bg);
+  color: var(--aa-fg);
+}
+/* Optimización de pintado: las secciones cuyo tema coincide con el de la raíz NO pintan
+   su fondo — lo deja ver la capa fija .aa-landing::before (mismo color). Solo las del
+   tema opuesto siguen pintando (opaco), conservando la alternancia de strips. */
+.aa-landing[data-aa-theme="dark"] [data-aa-section-theme="dark"],
+.aa-landing[data-aa-theme="light"] [data-aa-section-theme="light"] {
+  background-color: transparent;
+}

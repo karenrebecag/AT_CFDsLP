@@ -1,0 +1,66 @@
+/* atfx-cfds · "Por qué ATFX" — maquetación Relume Layout 614 en 2 columnas: aside
+   izquierda (heading + CTA) + lista de diferenciadores a la derecha. Tokens --aa-*. */
+
+.aa-landing .aa-why__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--aa-gap-xl);
+}
+@media screen and (min-width: 768px) {
+  .aa-landing .aa-why__grid {
+    grid-template-columns: minmax(0, 22em) minmax(0, 1fr);
+    gap: var(--aa-gap-xxl);
+    align-items: start;
+  }
+}
+
+/* Aside: sticky bajo el navbar en desktop */
+.aa-landing .aa-why__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--aa-gap-s);
+}
+@media screen and (min-width: 768px) {
+  .aa-landing .aa-why__aside {
+    position: sticky;
+    top: calc(var(--aa-nav-height) + var(--aa-gap-l));
+  }
+}
+.aa-landing .aa-why__lead { color: var(--aa-fg-muted); }
+.aa-landing .aa-why__cta { margin-top: var(--aa-gap-s); }
+
+/* Lista de diferenciadores: filas separadas por borde superior */
+.aa-landing .aa-why__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.aa-landing .aa-why__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--aa-gap-l);
+  row-gap: var(--aa-gap-xxs);
+  padding-block: var(--aa-gap-l);
+  border-top: 1px solid var(--aa-border);
+}
+.aa-landing .aa-why__item:first-child { border-top: 0; padding-top: 0; }
+
+/* Icono a la izquierda, ocupa las dos filas de la fila (título + desc) */
+.aa-landing .aa-why__icon {
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  color: var(--aa-accent);
+}
+.aa-landing .aa-why__icon svg { width: 2.5rem; height: 2.5rem; }
+
+.aa-landing .aa-why__title { align-self: center; }
+.aa-landing .aa-why__desc { max-width: 44em; }
+
+@media screen and (max-width: 767px) {
+  /* En móvil el icono va arriba, título y desc debajo (una sola columna) */
+  .aa-landing .aa-why__item { grid-template-columns: 1fr; }
+  .aa-landing .aa-why__icon { grid-row: auto; margin-bottom: var(--aa-gap-xs); }
+}

@@ -1,0 +1,65 @@
+/* atom-academy · typography. Escala híbrida clamp() — robusta dentro de Elementor. */
+
+/* Display: todos los headings usan Grift (carácter de marca). */
+.aa-landing :is(.aa-h-xxl, .aa-h-xl, .aa-h-l, .aa-h-ml, .aa-h-m) {
+  font-family: var(--aa-font-display);
+}
+
+.aa-landing .aa-h-xxl {
+  font-size: var(--aa-text-xxl);
+  font-weight: var(--aa-weight-extrabold);
+  line-height: var(--aa-leading-tight);
+  letter-spacing: -0.03em;
+}
+
+.aa-landing .aa-h-xl {
+  font-size: var(--aa-text-xl);
+  font-weight: var(--aa-weight-bold);
+  line-height: var(--aa-leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.aa-landing .aa-h-l {
+  font-size: var(--aa-text-l);
+  font-weight: var(--aa-weight-bold);
+  line-height: var(--aa-leading-snug);
+  letter-spacing: -0.02em;
+}
+
+.aa-landing .aa-h-ml {
+  font-size: var(--aa-text-ml);
+  font-weight: var(--aa-weight-semibold);
+  line-height: var(--aa-leading-snug);
+  letter-spacing: -0.01em;
+}
+
+.aa-landing .aa-h-m {
+  font-size: var(--aa-text-m);
+  font-weight: var(--aa-weight-semibold);
+  line-height: var(--aa-leading-snug);
+}
+
+.aa-landing .aa-p-l {
+  font-size: var(--aa-text-s);
+  line-height: var(--aa-leading-normal);
+  color: var(--aa-fg-muted);
+}
+
+.aa-landing .aa-p-m {
+  font-size: var(--aa-text-xs);
+  line-height: var(--aa-leading-normal);
+  color: var(--aa-fg-muted);
+}
+
+.aa-landing .aa-eyebrow {
+  font-family: var(--aa-font-mono);
+  font-size: var(--aa-text-xxs);
+  font-weight: var(--aa-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--aa-fg-subtle);
+  display: block;
+}
+
+/* Clip wrapper para reveal de headings (SplitText sube las words desde abajo) */
+.aa-landing .aa-split-wrap { overflow: hidden; }

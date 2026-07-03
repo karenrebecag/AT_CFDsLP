@@ -10,7 +10,7 @@ console.log(`[atfx-cfds-lp] v${_v} loaded`);
 
 import { type Theme, type Lang } from './core/types';
 import { detectLang } from './core/geo';
-import { storedLang, persistLang } from './core/lang';
+import { storedLang, persistLang, LANG_PARAM } from './core/lang';
 import { initMotion } from './ui/motion';
 import { renderNavbar, initNavbar } from './ui/navbar';
 import { renderTopbar, initTopbar } from './ui/topbar';
@@ -59,12 +59,12 @@ function resolveLang(raw: string | undefined): Lang {
 }
 
 // Resuelve el idioma una sola vez, con precedencia:
-//   1) ?lang= en la URL (elección manual del toggle) → gana y se recuerda
+//   1) ?aalang= en la URL (elección manual del toggle) → gana y se recuerda
 //   2) localStorage (última elección manual) → no lo pisa el geo en cada visita
 //   3) geo-IP (país → es/en)
 //   4) data-aa-lang del mount (default es)
 async function resolveLangAsync(mount: HTMLElement): Promise<Lang> {
-  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  const urlLang = new URLSearchParams(window.location.search).get(LANG_PARAM);
   if (urlLang === 'es' || urlLang === 'en') {
     persistLang(urlLang);
     return urlLang;

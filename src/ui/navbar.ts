@@ -4,18 +4,18 @@
 
 import { renderButton } from './atoms/button';
 import { NAV_CTA } from '../constants/nav';
-import { persistLang } from '../core/lang';
+import { persistLang, LANG_PARAM } from '../core/lang';
 import type { Lang } from '../core/types';
 
-// URL de la elección: setea ?lang sobre la URL actual (preserva los demás params, p. ej. UTM;
-// reemplazarla por `?lang=x` los borraría). Se recalcula en cada uso para leer la URL viva.
+// URL de la elección: setea ?aalang sobre la URL actual (preserva los demás params, p. ej. UTM;
+// reemplazarla por `?aalang=x` los borraría). Se recalcula en cada uso para leer la URL viva.
 function langHref(code: Lang): string {
   const url = new URL(window.location.href);
-  url.searchParams.set('lang', code);
+  url.searchParams.set(LANG_PARAM, code);
   return url.href;
 }
 
-// Toggle de idioma: recarga con ?lang=… (el boot lo lee y re-renderiza en ese idioma). El
+// Toggle de idioma: recarga con ?aalang=… (el boot lo lee y re-renderiza en ese idioma). El
 // click persiste la elección ANTES de recargar; así, si un caché/CDN/redirect quita el
 // parámetro, la precedencia por localStorage ya refleja el idioma nuevo (no queda atrapado).
 function buildLangToggle(lang: Lang): HTMLElement {

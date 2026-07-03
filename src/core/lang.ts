@@ -6,6 +6,11 @@
 
 import type { Lang } from './types';
 
+// Query param del toggle. NO usar `lang`: es el var reservado de WPML/Polylang. En sitios
+// multilingües por carpeta (p. ej. /en/) WPML fija el idioma por el path e ignora/duplica un
+// `?lang` → el toggle nunca volvía a español. `aalang` no choca con WPML.
+export const LANG_PARAM = 'aalang';
+
 const LANG_KEY = 'aa-lang';
 
 export function storedLang(): Lang | null {

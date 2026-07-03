@@ -25,8 +25,14 @@ Versionado: el CI de release etiqueta `vX.Y.Z` por push a `main` (cuando se cone
 - Fotos de aliados en proporción 4:5 (ligeramente vertical).
 - Countdown: squares en grid de columnas iguales (`minmax(0,1fr)`) con `aspect-ratio` 1:1,
   para que los 4 midan lo mismo; 2 columnas en mobile.
+- Imagen de la sección "Por qué ATFX": ahora el render oficial MX de `atfx.com`.
+- Cursor personalizado desactivado: se usa el puntero nativo del sistema.
 
 ### Fixed
+- Toggle de idioma (volver de inglés a español): la elección se persiste en el click, no solo
+  tras leer `?lang` en el reload; si un caché/CDN o el redirect canónico de WordPress quita el
+  parámetro, el usuario ya no queda atrapado en inglés. Además el switch fija `?lang` sobre la
+  URL actual (preserva UTM/otros params) en vez de reemplazar todo el query string.
 - Desborde horizontal en todas las strips: se restauró el reset `box-sizing: border-box`
   (perdido en el duplicado). Sin él, `width:100%` + `padding-inline` del `.aa-container`
   desbordaba y el `overflow-x: clip` del root recortaba el contenido por la derecha

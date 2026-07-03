@@ -4,9 +4,20 @@
 
 import { renderButton } from './atoms/button';
 import { NAV_CTA } from '../constants/nav';
+import { persistLang } from '../core/lang';
 import type { Lang } from '../core/types';
 
-// Toggle de idioma: recarga con ?lang=… (el boot lo lee y re-renderiza en ese idioma).
+// URL de la elección: setea ?lang sobre la URL actual (preserva los demás params, p. ej. UTM;
+// reemplazarla por `?lang=x` los borraría). Se recalcula en cada uso para leer la URL viva.
+function langHref(code: Lang): string {
+  const url = new URL(window.location.href);
+  url.searchParams.set('lang', code);
+  return url.href;
+}
+
+// Toggle de idioma: recarga con ?lang=… (el boot lo lee y re-renderiza en ese idioma). El
+// click persiste la elección ANTES de recargar; así, si un caché/CDN/redirect quita el
+// parámetro, la precedencia por localStorage ya refleja el idioma nuevo (no queda atrapado).
 function buildLangToggle(lang: Lang): HTMLElement {
   const group = document.createElement('div');
   group.className = 'aa-lang';
@@ -15,9 +26,17 @@ function buildLangToggle(lang: Lang): HTMLElement {
   (['es', 'en'] as Lang[]).forEach((code) => {
     const a = document.createElement('a');
     a.className = code === lang ? 'aa-lang__opt is--active' : 'aa-lang__opt';
-    a.href = `?lang=${code}`;
+    a.href = langHref(code); // fallback sin-JS con params preservados
     a.textContent = code.toUpperCase();
-    if (code === lang) a.setAttribute('aria-current', 'true');
+    if (code === lang) {
+      a.setAttribute('aria-current', 'true');
+    } else {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        persistLang(code);
+        window.location.assign(langHref(code));
+      });
+    }
     group.appendChild(a);
   });
   return group;

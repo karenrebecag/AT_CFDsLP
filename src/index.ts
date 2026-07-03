@@ -10,6 +10,7 @@ console.log(`[atfx-cfds-lp] v${_v} loaded`);
 
 import { type Theme, type Lang } from './core/types';
 import { detectLang } from './core/geo';
+import { storedLang, persistLang } from './core/lang';
 import { initMotion } from './ui/motion';
 import { renderNavbar, initNavbar } from './ui/navbar';
 import { renderTopbar, initTopbar } from './ui/topbar';
@@ -29,7 +30,6 @@ import { initAccordion } from './ui/accordion';
 import { initPillarSlider } from './ui/pillar-slider';
 import { initRotatingText } from './ui/rotating-text';
 import { initBenefitsScroll } from './ui/benefits-scroll';
-import { initCursor } from './ui/cursor';
 import { initMomentumHover } from './ui/momentum-hover';
 import { initButton004 } from './ui/button004';
 import { initDriftGallery } from './ui/drift-gallery';
@@ -56,24 +56,6 @@ function resolveTheme(raw: string | undefined): Theme {
 
 function resolveLang(raw: string | undefined): Lang {
   return raw === 'en' ? 'en' : 'es';
-}
-
-const LANG_KEY = 'aa-lang';
-
-function storedLang(): Lang | null {
-  try {
-    const v = localStorage.getItem(LANG_KEY);
-    return v === 'es' || v === 'en' ? v : null;
-  } catch {
-    return null; // modo privado / storage bloqueado
-  }
-}
-function persistLang(lang: Lang): void {
-  try {
-    localStorage.setItem(LANG_KEY, lang);
-  } catch {
-    /* no-op */
-  }
 }
 
 // Resuelve el idioma una sola vez, con precedencia:
@@ -140,7 +122,7 @@ async function boot(): Promise<void> {
     initAccordion(root);
     initPillarSlider(root);
     initRotatingText(root);
-    initCursor(root);
+    // Cursor personalizado desactivado: se usa el puntero nativo del sistema.
     initMomentumHover(root);
     initButton004(root);
     initNumberOdometer();

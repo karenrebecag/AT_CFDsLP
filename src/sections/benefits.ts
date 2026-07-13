@@ -105,7 +105,7 @@ export function renderBenefitsSection(root: Element, lang: Lang): void {
       label: lang === 'es' ? 'Opera con ATFX' : 'Trade with ATFX',
       ratio: '4 / 3',
       className: 'aa-why__media-slot',
-      src: 'https://www.atfx.com/wp-content/uploads/2024/05/MX_es-768x432.jpg',
+      src: 'https://pub-62c41549a44642efbcd3f775bdb039b3.r2.dev/1779791768693_16cd968070db903237abecfd1578f095f95a3fd121d551686f6b1d1b986cea28.webp',
     }),
   );
 

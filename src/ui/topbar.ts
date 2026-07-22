@@ -7,8 +7,8 @@ import { gsap, ScrollTrigger } from './gsap-env';
 import type { Lang } from '../core/types';
 
 const PHRASES: Record<Lang, string> = {
-  es: 'Abre tu cuenta con ATFX y opera los mercados globales',
-  en: 'Open your account with ATFX and trade the global markets',
+  es: 'Quiero más información sobre ATFX y opera los mercados globales',
+  en: 'Get more information about ATFX and trade the global markets',
 };
 const BASE_REPEAT = 4; // secuencia base; initTopbar la rellena hasta cubrir el viewport
 const SPEED = 70; // px/s — velocidad constante del loop horizontal

@@ -21,8 +21,8 @@ const COPY: Record<Lang, FaqCopy> = {
   es: {
     eyebrow: 'FAQ',
     heading: 'Preguntas frecuentes',
-    intro: 'Lo esencial antes de operar CFDs con ATFX. Si te queda alguna duda, abre tu cuenta y nuestro equipo te acompaña.',
-    cta: 'Abre tu cuenta',
+    intro: 'Lo esencial antes de operar CFDs con ATFX. Si te queda alguna duda, contáctanos y nuestro equipo te acompaña.',
+    cta: 'Quiero más información',
     faqs: [
       { question: '¿En qué se diferencian los CFDs de comprar el activo?', answer: 'Comprar el activo significa que lo posees y solo ganas si el precio sube. Con CFDs no lo posees: operas la dirección del precio. Eso te da apalancamiento y la posibilidad de ganar cuando los precios caen, pero también significa que puedes ser liquidado si el mercado se mueve en tu contra.' },
       { question: '¿Cuál es la diferencia entre largo y corto?', answer: 'Ir largo significa que ganas si el precio sube. Ir corto significa que ganas si el precio baja. Con la inversión tradicional solo ganas cuando los precios suben; los CFDs te permiten tomar posición en cualquier dirección.' },
@@ -36,8 +36,8 @@ const COPY: Record<Lang, FaqCopy> = {
   en: {
     eyebrow: 'FAQ',
     heading: 'Frequently asked',
-    intro: 'The essentials before trading CFDs with ATFX. If you still have questions, open your account and our team will guide you.',
-    cta: 'Open your account',
+    intro: 'The essentials before trading CFDs with ATFX. If you still have questions, contact us and our team will guide you.',
+    cta: 'Get more information',
     faqs: [
       { question: 'How are CFDs different from buying the asset?', answer: 'Buying the asset means you own it and can only profit if the price goes up. With CFDs you don’t own it: you trade price direction. That unlocks leverage and the ability to profit when prices fall, but it also means you can be liquidated if the market moves against you.' },
       { question: 'What is the difference between long and short?', answer: 'Going long means you profit if the price rises. Going short means you profit if the price falls. With traditional investing you can only make money when prices go up; CFDs let you take a position in either direction.' },

@@ -22,14 +22,14 @@ const COPY: Record<Lang, HeroCopy> = {
     title: 'De la mesa al mercado.',
     sub: 'Ya sabes **leer la mesa**, **gestionar tu bankroll** y poner tu dinero cuando las probabilidades están de tu lado. **En los mercados es igual.**',
     product: 'Opera **divisas, oro, índices y más** con ATFX. **Sin poseer el activo. En ambas direcciones.**',
-    cta: 'Abre tu cuenta',
+    cta: 'Quiero más información',
   },
   en: {
     pill: 'CFDs',
     title: 'From the table to the markets.',
     sub: 'You already know how to **read the table**, **manage your bankroll**, and put your money down when the odds are in your favor. **In the markets, it is the same.**',
     product: 'Trade **forex, gold, indices, and more** with ATFX. **Without owning the asset. In both directions.**',
-    cta: 'Open your account',
+    cta: 'Get more information',
   },
 };
 

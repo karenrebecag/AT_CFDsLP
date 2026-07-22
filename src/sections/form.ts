@@ -19,14 +19,14 @@ interface FormCopy {
 
 const COPY: Record<Lang, FormCopy> = {
   es: {
-    pill: 'Abre tu cuenta',
-    heading: 'Empieza a operar con ATFX',
-    lead: 'Déjanos tus datos y abre tu cuenta. Opera divisas, oro, índices y más, con apalancamiento y control de riesgo. Sin poseer el activo, en ambas direcciones.',
+    pill: 'Quiero más información',
+    heading: 'Empieza tu experiencia con ATFX',
+    lead: 'Completa el formulario y un especialista te contactará para ayudarte a conocer nuestras plataformas, tipos de cuenta y resolver cualquier duda antes de comenzar.',
   },
   en: {
-    pill: 'Open your account',
-    heading: 'Start trading with ATFX',
-    lead: 'Leave us your details and open your account. Trade forex, gold, indices, and more, with leverage and risk controls. Without owning the asset, in both directions.',
+    pill: 'Get more information',
+    heading: 'Start your experience with ATFX',
+    lead: 'Fill out the form and a specialist will contact you to help you get to know our platforms, account types, and answer any questions before you start.',
   },
 };
 

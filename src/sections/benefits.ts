@@ -36,7 +36,7 @@ const COPY: Record<Lang, WhyCopy> = {
     eyebrow: 'Por qué ATFX',
     heading: 'Una base sólida para operar',
     lead: 'Un bróker global, regulado y en español, pensado para que operes con confianza.',
-    cta: 'Abre tu cuenta',
+    cta: 'Quiero más información',
     items: [
       { icon: ICON.globe, title: 'Broker global con presencia en LATAM', desc: 'Operando desde 2017, con equipo en 14 países y oficinas en LATAM (México y Colombia).' },
       { icon: ICON.zap, title: 'Plataforma rápida y fácil de usar', desc: 'Divisas, oro, índices y más desde una sola cuenta, con ejecución ágil e interfaz clara.' },
@@ -48,7 +48,7 @@ const COPY: Record<Lang, WhyCopy> = {
     eyebrow: 'Why ATFX',
     heading: 'A solid base to trade on',
     lead: 'A global, regulated, Spanish-language broker built so you can trade with confidence.',
-    cta: 'Open your account',
+    cta: 'Get more information',
     items: [
       { icon: ICON.globe, title: 'Global broker with LATAM presence', desc: 'Operating since 2017, with a team across 14 countries and offices in LATAM (Mexico and Colombia).' },
       { icon: ICON.zap, title: 'Fast, easy-to-use platform', desc: 'Forex, gold, indices, and more from a single account, with quick execution and a clear interface.' },

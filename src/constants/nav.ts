@@ -24,6 +24,6 @@ export const NAV_LINKS: Record<Lang, NavLink[]> = {
 };
 
 export const NAV_CTA: Record<Lang, NavLink> = {
-  es: { label: 'Abre tu cuenta', href: '#registro' },
-  en: { label: 'Open your account', href: '#registro' },
+  es: { label: 'Quiero más información', href: '#registro' },
+  en: { label: 'Get more information', href: '#registro' },
 };

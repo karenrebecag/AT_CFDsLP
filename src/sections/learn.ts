@@ -27,7 +27,7 @@ const COPY: Record<Lang, ConceptsCopy> = {
     eyebrow: 'Conceptos',
     heading: 'Los CFDs, paso a paso',
     lead: 'Seis ideas para operar con criterio: dirección, mecánica, tamaño, control de riesgo, costos y el riesgo real.',
-    cta: 'Abre tu cuenta',
+    cta: 'Quiero más información',
     concepts: [
       {
         title: 'Dirección: largo o corto',
@@ -59,7 +59,7 @@ const COPY: Record<Lang, ConceptsCopy> = {
     eyebrow: 'Concepts',
     heading: 'CFDs, step by step',
     lead: 'Six ideas to trade with a clear head: direction, mechanics, sizing, risk control, costs, and the real risk.',
-    cta: 'Open your account',
+    cta: 'Get more information',
     concepts: [
       {
         title: 'Direction: long or short',

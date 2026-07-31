@@ -20,14 +20,14 @@ const COPY: Record<Lang, HeroCopy> = {
   es: {
     pill: 'CFDs',
     title: 'De la mesa al mercado.',
-    sub: 'Ya sabes **leer la mesa**, **gestionar tu bankroll** y poner tu dinero cuando las probabilidades están de tu lado. **En los mercados es igual.**',
+    sub: 'Las habilidades que ya tienes en la mesa funcionan igual en los mercados financieros. Solo falta conocer las reglas del juego.',
     product: 'Opera **divisas, oro, índices y más** con ATFX. **Sin poseer el activo. En ambas direcciones.**',
     cta: 'Quiero más información',
   },
   en: {
     pill: 'CFDs',
     title: 'From the table to the markets.',
-    sub: 'You already know how to **read the table**, **manage your bankroll**, and put your money down when the odds are in your favor. **In the markets, it is the same.**',
+    sub: 'The skills you already have at the table work the same in the financial markets. You just need to know the rules of the game.',
     product: 'Trade **forex, gold, indices, and more** with ATFX. **Without owning the asset. In both directions.**',
     cta: 'Get more information',
   },

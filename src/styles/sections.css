@@ -161,8 +161,8 @@
 .aa-landing .aa-faq__inner > .aa-pill { align-self: flex-start; }
 .aa-landing .aa-faq__intro { max-width: 52ch; }
 .aa-landing .aa-faq .aa-accordion { width: 100%; }
+.aa-landing .aa-faq__closing { margin-top: var(--aa-gap-s); }
 .aa-landing .aa-faq__cta {
   display: flex;
   justify-content: flex-start;
-  margin-top: var(--aa-gap-s);
 }

@@ -34,7 +34,7 @@ const ICON = {
 const COPY: Record<Lang, WhyCopy> = {
   es: {
     eyebrow: 'Por qué ATFX',
-    heading: 'Una base sólida para operar',
+    heading: 'Un bróker global que habla tu idioma',
     lead: 'Un bróker global, regulado y en español, pensado para que operes con confianza.',
     cta: 'Quiero más información',
     items: [
@@ -46,7 +46,7 @@ const COPY: Record<Lang, WhyCopy> = {
   },
   en: {
     eyebrow: 'Why ATFX',
-    heading: 'A solid base to trade on',
+    heading: 'A global broker that speaks your language',
     lead: 'A global, regulated, Spanish-language broker built so you can trade with confidence.',
     cta: 'Get more information',
     items: [

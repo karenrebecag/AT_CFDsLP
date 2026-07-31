@@ -5,6 +5,11 @@ Versionado: el CI de release etiqueta `vX.Y.Z` por push a `main` (cuando se cone
 
 ## [Unreleased]
 
+### Changed
+- Copy ES/EN: subtítulo del hero simplificado; CTA de "CFDs paso a paso" → "Quiero
+  empezar a operar"; heading de beneficios → "Un bróker global que habla tu idioma";
+  cierre del FAQ con heading + CTA ("¿Listo para dar el paso?" / "Abre tu cuenta hoy").
+
 ### Added
 - Bootstrap del proyecto: duplicado 1:1 de `ATOM_Academy` como punto de partida (stack
   vanilla TS + esbuild + GSAP, Mount Point Pattern para Elementor).
